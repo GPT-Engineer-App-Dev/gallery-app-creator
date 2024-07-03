@@ -1,17 +1,30 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Home } from "lucide-react";
+import { Home, Image, UploadCloud } from "lucide-react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Layout from "./layouts/default"; // available: default, navbar, sidebar
+import Layout from "./layouts/sidebar"; // Use sidebar layout
 import Index from "./pages/Index.jsx";
+import Gallery from "./pages/Gallery.jsx"; // Import Gallery page
+import Upload from "./pages/Upload.jsx"; // Import Upload page
+
 const queryClient = new QueryClient();
 
 export const navItems = [
   {
-    title: "Home", // Feel free to change this to your liking
+    title: "Home",
     to: "/",
     icon: <Home className="h-4 w-4" />,
+  },
+  {
+    title: "Gallery",
+    to: "/gallery",
+    icon: <Image className="h-4 w-4" />,
+  },
+  {
+    title: "Upload",
+    to: "/upload",
+    icon: <UploadCloud className="h-4 w-4" />,
   },
 ];
 
@@ -24,7 +37,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
-              {/* Add more routes here as needed */}
+              <Route path="gallery" element={<Gallery />} />
+              <Route path="upload" element={<Upload />} />
             </Route>
           </Routes>
         </Router>
